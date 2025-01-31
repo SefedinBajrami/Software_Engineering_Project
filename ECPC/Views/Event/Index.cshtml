@@ -1,0 +1,139 @@
+﻿
+@{
+    ViewData["Title"] = "All Events";
+}
+
+<link rel="stylesheet" href="/css/home.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+@model IEnumerable<ECPC.ViewModels.EventViewModel>
+@using ECPC.ViewModels
+
+
+    <div class="index-container">
+        @if (Model == null || !Model.Any())
+    {
+        <p>No events available in the database.</p>
+    }
+    else
+    {
+        <div class="event-list">
+            @foreach (var eventItem in Model)
+            {
+            <div class="event-card">
+                <!-- Left Section: Comments -->
+                <div class="left-section">
+                    <div id="comments-section-@eventItem.ID" class="comments-section">
+                        <h3>Comments</h3>
+                        <div id="comments-list-@eventItem.ID" class="comments-list">
+                            @if (eventItem.Comments != null && eventItem.Comments.Any())
+        {
+            foreach (var comment in eventItem.Comments)
+            {
+                                        <div class="comment">
+                                            <img src="@comment.ProfileImageUrl" alt="User Image" style="width: 30px; height: 30px; border-radius: 50%;" />
+                                            <strong>@comment.UserName:</strong>
+                                            <p>@comment.CommentText</p>
+                                            <small>@comment.CreatedAt.ToString("g")</small>
+                                        </div>
+
+            }
+        }
+        else
+        {
+                            <p>No comments yet. Be the first to comment!</p>
+        }
+                        </div>
+                        <textarea id="add-comment-text-@eventItem.ID" class="add-comment-text" data-event-id="@eventItem.ID" placeholder="Add a comment..."></textarea>
+                    </div>
+
+                </div>
+
+                <!-- Middle Section: Event Details -->
+                <div class="middle-section">
+                    <h2>@eventItem.Title</h2>
+                    <img src="@eventItem.Image" alt="Event Image" class="event-image" />
+                    <button class="btn-go">Go!</button>
+                    <button class="button">
+                        <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" class="icon">
+                            <path d="M307 34.8c-11.5 5.1-19 16.6-19 29.2v64H176C78.8 128 0 206.8 0 304C0 417.3 81.5 467.9 100.2 478.1c2.5 1.4 5.3 1.9 8.1 1.9c10.9 0 19.7-8.9 19.7-19.7c0-7.5-4.3-14.4-9.8-19.5C108.8 431.9 96 414.4 96 384c0-53 43-96 96-96h96v64c0 12.6 7.4 24.1 19 29.2s25 3 34.4-5.4l160-144c6.7-6.1 10.6-14.7 10.6-23.8s-3.8-17.7-10.6-23.8l-160-144c-9.4-8.5-22.9-10.6-34.4-5.4z"></path>
+                        </svg>
+                        Share
+                    </button>
+                    <!-- From Uiverse.io by ahmed150up -->
+                    <button class="btn-save">
+                        <svg viewBox="0 0 384 512" height="1em" xmlns="http://www.w3.org/2000/svg"><path d="M0 48C0 21.5 21.5 0 48 0l0 48V441.4l130.1-92.9c8.3-6 19.6-6 27.9 0L336 441.4V48H48V0H336c26.5 0 48 21.5 48 48V488c0 9-5 17.2-13 21.3s-17.6 3.4-24.9-1.8L192 397.5 37.9 507.5c-7.3 5.2-16.9 5.9-24.9 1.8S0 497 0 488V48z"></path></svg>
+                    </button>
+                </div>
+
+                <!-- Right Section: User and Event Info -->
+                <div class="right-section">
+                    <div class="user-profile">
+                        <img src="@eventItem.ProfileImageUrl" alt="User Image" class="profile-image" />
+                        <h3>
+                            <a asp-controller="Auth" asp-action="OtherProfiles" asp-route-id="@eventItem.CreatedById">
+                                @eventItem.UserName
+                            </a>
+                        </h3>
+                    </div>
+                    <div class="event-details">
+                        <p><strong>Description:</strong> @eventItem.Description</p>
+                        <p><strong>Date:</strong> @eventItem.EventDate.ToShortDateString()</p>
+                        <p><strong>Time:</strong> @eventItem.Time</p>
+                        <p><strong><a href="@eventItem.Location" class="location-link" target="_blank"><i class="fas fa-map-marker-alt"></i> Location</a></strong></p>
+                    </div>
+                </div>
+            </div>
+            }
+        </div>
+    }
+    </div>
+
+    <script>
+    document.querySelectorAll('.add-comment-text').forEach(textarea => {
+        textarea.addEventListener('keypress', async (e) => {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+
+                const eventId = textarea.getAttribute('data-event-id');
+                const commentText = textarea.value.trim();
+
+                if (!commentText) {
+                    alert("Comment cannot be empty.");
+                    return;
+                }
+
+                try {
+                    const response = await fetch('/Event/AddComment', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ eventId: parseInt(eventId), commentText })
+                    });
+
+                    if (response.ok) {
+                        const newComment = await response.json();
+                        const commentsList = document.getElementById(`comments-list-${eventId}`);
+                        const newCommentHtml = `
+                            <div class="comment">
+                                <img src="${newComment.profileImageUrl}" alt="User Image" style="width: 30px; height: 30px; border-radius: 50%;" />
+                                <strong>${newComment.userName}:</strong>
+                                <p>${newComment.commentText}</p>
+                                <small>${new Date(newComment.createdAt).toLocaleString()}</small>
+                            </div>`;
+                        commentsList.insertAdjacentHTML('beforeend', newCommentHtml);
+
+                        textarea.value = ''; // Clear the textarea
+                    } else {
+                        const error = await response.text();
+                        console.error("Server error:", error);
+                        alert("Failed to submit comment.");
+                    }
+                } catch (error) {
+                    console.error("Network error:", error);
+                    alert("Network error. Please try again.");
+                }
+            }
+        });
+    });
+
+    </script>

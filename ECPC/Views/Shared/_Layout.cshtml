@@ -1,0 +1,93 @@
+﻿@using System.Security.Claims
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <title>@ViewData["Title"] - ECPC</title>
+    <link rel="stylesheet" href="~/css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Revalia&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+</head>
+<body style="background-color: #1E1E1E;">
+    <nav class="navbar">
+        <ul class="nav-links">
+            <li class="dropdown">
+                <a href="#">Explore</a>
+                <ul class="dropdown-menu">
+                    <li><a asp-controller="Event" asp-action="Index">All</a></li>
+                    <li><a href="#">Social</a></li>
+                    <li><a href="#">Sports</a></li>
+                    <li><a href="#">Arts & Culture</a></li>
+                    <li><a href="#">Education & Workshops</a></li>
+                    <li><a href="#">Travel & Adventure</a></li>
+                    <li><a href="#">Community & Causes</a></li>
+                    <li><a href="#">Business & Networking</a></li>
+                    <li><a href="#">Other</a></li>
+                </ul>
+            </li>
+            <li>
+                <a asp-controller="Event" asp-action="Create">Create</a>
+            </li>
+            <li><a href="#">Play</a></li>
+            <li class="nav-item">
+                <a asp-controller="Auth" asp-action="Connect">Connect</a>
+            </li>
+        </ul>
+        <input type="text" class="search-bar" placeholder="Search..." />
+
+        <!-- Toggle button -->
+        <input type="checkbox" id="checkbox" />
+        <label for="checkbox" class="toggle">
+            <div class="bars" id="bar1"></div>
+            <div class="bars" id="bar2"></div>
+            <div class="bars" id="bar3"></div>
+        </label>
+        <div class="menu-dropdown">
+            <ul>
+                <li><a href="#">Profile Settings</a></li>
+                <li><a href="#">Privacy Settings</a></li>
+                <li><a href="#">Contact Support</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Logout</a></li>
+            </ul>
+        </div>
+
+        <!-- Profile circle -->
+        <div class="nav-item profile-circle-container">
+            <a asp-controller="Auth" asp-action="UserProfile"
+               asp-route-id="@User.FindFirstValue(System.Security.Claims.ClaimTypes.NameIdentifier)"
+               class="profile-circle-link">
+                @if (User.HasClaim(c => c.Type == "ProfileImageUrl"))
+                {
+                    <img src="@User.FindFirstValue("ProfileImageUrl")" alt="Profile Image" class="profile-circle">
+                }
+                else
+                {
+                    <img src="/Uploads/default-profile.png" alt="Default Profile Image" class="profile-circle">
+                }
+            </a>
+        </div>
+    </nav>
+    <main>
+        @RenderBody()
+    </main>
+</body>
+@RenderSection("Scripts", required: false)
+</html>
+
+<script>
+    function toggleMenuDropdown() {
+        const menu = document.querySelector('.menu');
+        const dropdown = document.querySelector('.menu-dropdown');
+
+        // Toggle dropdown visibility
+        menu.classList.toggle('active');
+
+        // Toggle vertical alignment for rectangles
+        menu.classList.toggle('vertical');
+    }
+</script>

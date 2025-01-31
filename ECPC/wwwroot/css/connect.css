@@ -1,0 +1,52 @@
+﻿body {
+    margin: 0;
+}
+
+main {
+    padding-top: 50px; /* Match the navbar's exact height */
+}
+
+
+/* Grid layout for the user cards */
+.user-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 columns */
+    gap: 20px; /* Space between the items */
+    margin: 20px 0;
+}
+
+/* Style for each user card */
+.user-card {
+    background-color: #333;
+    color: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+    /* Profile image styling */
+    .user-card img.profile-image {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        margin-bottom: 10px;
+        
+    }
+
+    /* Button styling for Follow button */
+    .user-card .btn {
+        padding: 10px 20px;
+        font-size: 14px;
+        border-radius: 5px;
+        cursor: pointer;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        transition: background-color 0.3s ease;
+    }
+
+        /* Button hover effect */
+        .user-card .btn:hover {
+            background-color: #0056b3;
+        }

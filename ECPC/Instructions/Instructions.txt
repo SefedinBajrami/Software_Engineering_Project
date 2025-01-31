@@ -1,0 +1,20 @@
+﻿(ECPC) Explore , Connect, Play , Create
+
+1.login page
+2.create user page
+3.user profile page
+4.Main page(home)
+5.other profiles page
+6.event page
+7.Create page(Create events page)
+8.Explore,Create,Play,Connect pages.
+
+
+
+
+admins can delete all events.
+user can delete only events that they created.
+users cant have same username.
+users can make friends
+users can make teams ( join team , invite to team , etc)
+

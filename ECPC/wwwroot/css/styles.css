@@ -1,0 +1,413 @@
+﻿body {
+    background-color: #1E1E1E; /* Dark gray background */
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+.navbar {
+    background-color: blue;
+    padding: 0 10px;
+    height: 50px; /* Ensure proper navbar height */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid black;
+}
+
+.nav-item {
+    margin-right: 20px; /* Add spacing from right edge */
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 100px;
+    margin: 0;
+    padding: 0;
+    align-items: center;
+}
+
+    .nav-links li {
+        display: inline;
+    }
+
+    .nav-links a {
+        font-family: "Revalia", serif;
+        font-weight: 400;
+        font-style: normal;
+        color: black;
+        text-decoration: none;
+        font-size: 25px;
+        font-weight: bold;
+    }
+
+    .nav-links li:first-child {
+        margin-left: 50px; /* Adjust the value for desired spacing */
+    }
+
+/* Menu container */
+.menu {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    position: relative; /* Relative for dropdown positioning */
+}
+
+/* Menu rectangles */
+.menu-rect {
+    width: 25px;
+    height: 4px;
+    background-color: black;
+    border-radius: 20%;
+    transition: transform 0.5s ease; /* Smooth animation */
+}
+
+/* Menu dropdown (hidden by default) */
+.menu-dropdown {
+    display: none; /* Hidden initially */
+    position: absolute;
+    top: 50px; /* Adjust to place dropdown below menu */
+    right: 0; /* Align dropdown with the right edge of the menu */
+    background-color: white;
+    width: 140px; /* Dropdown width */
+    padding: 0;
+    margin: 0;
+    border: 1px solid blue;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional shadow */
+    list-style: none; /* Remove bullet points */
+    z-index: 1000;
+}
+
+    /* Dropdown menu items */
+    .menu-dropdown li {
+        display: flex;
+        justify-content: center; /* Center text horizontally */
+        align-items: center; /* Center text vertically */
+        height: 25px; /* Row height */
+        border-bottom: 1px solid blue; /* Separator */
+    }
+
+        .menu-dropdown li:last-child {
+            border-bottom: none; /* Remove last row border */
+        }
+
+        .menu-dropdown li a {
+            display: block;
+            width: 100%; /* Full width clickable */
+            text-align: center;
+            text-decoration: none;
+            color: black;
+            font-size: 12px;
+            line-height: 25px;
+        }
+
+/* Vertical alignment of menu-rects */
+.menu.vertical .menu-rect {
+    transform: rotate(90deg); /* Rotate rectangles */
+}
+
+/* Show dropdown */
+.menu.active .menu-dropdown {
+    display: flex; /* Show dropdown on menu click */
+    flex-direction: column;
+}
+
+/* Search bar */
+.search-bar {
+    height: 25px;
+    width: 200px;
+    margin: 0 20px; /* Space between menu and connect */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 5px 10px;
+    font-size: 16px;
+    background-color: #fff;
+    outline: none;
+    border: 2px solid black;
+}
+
+profile-circle-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: auto; /* Push to the far right */
+}
+
+.profile-circle-link {
+    display: block;
+    width: 45px; /* Size of the circle */
+    height: 40px;
+    border-radius: 50%; /* Make it circular */
+    overflow: hidden;
+    border: 3px solid black;
+}
+
+.profile-circle {
+    width: 100%; /* Fill the container */
+    height: 100%;
+    object-fit: cover; /* Ensure the image fits within the circle */
+}
+
+
+
+/*        - -          - - - - -          - - - - - -  - - - -               */
+/* Dropdown container */
+.dropdown {
+    position: relative; /* Parent relative for child positioning */
+    text-align: center; /* Center the text inside the dropdown */
+}
+
+/* Dropdown menu items */
+.dropdown-menu {
+    display: none; /* Hidden by default */
+    position: absolute; /* Position relative to parent */
+    top: 100%; /* Directly below parent */
+    left: 50%; /* Center horizontally */
+    transform: translateX(-50%); /* Ensure it's perfectly centered */
+    background-color: white;
+    width: 150px; /* Uniform width for all items */
+    padding: 0;
+    margin: 0;
+    border: 1px solid blue; /* Border around the entire dropdown */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional shadow */
+    z-index: 1000;
+    box-sizing: border-box; /* Include padding/border in width/height */
+}
+
+    /* Dropdown menu list items */
+    .dropdown-menu li {
+        display: flex;
+        justify-content: center; /* Center horizontally */
+        align-items: center; /* Center vertically */
+        height: 25px; /* Consistent row height */
+        border-bottom: 1px solid blue; /* Separator between rows */
+        margin: 0; /* Reset margin for all list items */
+        padding: 0; /* Reset padding for all list items */
+        box-sizing: border-box; /* Ensure consistent box model */
+    }
+
+        /* Fix specific to first child */
+        .dropdown-menu li:first-child {
+            margin: 0; /* Explicitly ensure no extra margin */
+            padding: 0; /* Explicitly ensure no extra padding */
+            border-left: none; /* Prevent extra spacing from borders */
+        }
+
+        /* Remove the bottom border for the last item */
+        .dropdown-menu li:last-child {
+            border-bottom: none;
+        }
+
+        /* Dropdown menu links */
+        .dropdown-menu li a {
+            display: block;
+            width: 100%; /* Full row width */
+            text-align: center; /* Center text horizontally */
+            color: black;
+            text-decoration: none;
+            font-size: 12px; /* Adjust font size */
+            line-height: 20px; /* Center text vertically */
+            font-family: Arial, sans-serif;
+        }
+
+
+/* Show dropdown on hover */
+.dropdown:hover .dropdown-menu {
+    display: flex; /* Show menu when hovered */
+    flex-direction: column;
+}
+
+/* Reset default styles for ul and li */
+ul, li {
+    margin: 0;
+    padding: 0;
+    list-style: none; /* Remove bullets */
+}
+
+
+.menu-dropdown li:hover {
+    background-color: blue;
+}
+
+.menu-dropdown li:hover {
+    background-color: blue;
+}
+
+.dropdown-menu li:hover {
+    background-color: blue;
+}
+
+/*
+/* Hide the checkbox */
+#checkbox {
+    display: none;
+}
+
+/* Toggle button styling */
+.toggle {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition-duration: 0.3s;
+}
+
+.bars {
+    width: 100%;
+    height: 4px;
+    background-color: black;
+    border-radius: 5px;
+    transition-duration: 0.3s;
+}
+
+#checkbox:checked + .toggle #bar2 {
+    transform: translateY(14px) rotate(60deg);
+    margin-left: 0;
+    transform-origin: right;
+    transition-duration: 0.3s;
+    z-index: 2;
+}
+
+#checkbox:checked + .toggle #bar1 {
+    transform: translateY(28px) rotate(-60deg);
+    transition-duration: 0.3s;
+    transform-origin: left;
+    z-index: 1;
+}
+
+#checkbox:checked + .toggle {
+    transform: rotate(90deg);
+}
+
+/* Dropdown menu */
+.menu-dropdown {
+    display: none; /* Hidden initially */
+    position: absolute;
+    top: 50px;
+    right: 0;
+    background-color: white;
+    width: 140px;
+    padding: 0;
+    margin: 0;
+    border: 1px solid blue;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    list-style: none;
+    z-index: 1000;
+}
+
+/* Show dropdown when checkbox is checked */
+#checkbox:checked ~ .menu-dropdown {
+    display: flex; /* Display dropdown menu */
+    flex-direction: column;
+}
+
+/* Dropdown items */
+.menu-dropdown li {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 25px;
+    border-bottom: 1px solid blue;
+}
+
+    .menu-dropdown li:last-child {
+        border-bottom: none;
+    }
+
+    .menu-dropdown li a {
+        text-decoration: none;
+        color: black;
+        font-size: 12px;
+        line-height: 25px;
+    }
+
+    .menu-dropdown li:hover {
+        background-color: blue;
+        color: white;
+    }
+
+/*  - - - - - - - - -  - - - - - - - */
+.index-container {
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+    background-color: #f4f4f4;
+    margin: 0 auto;
+    max-width: 1200px;
+}
+
+/* Left Section */
+.left-section {
+    flex: 1;
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.comment-block {
+    margin-bottom: 15px;
+    border-bottom: 1px solid #e0e0e0;
+    padding-bottom: 10px;
+}
+
+/* Center Section */
+.center-section {
+    flex: 2;
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.event-card {
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+    .event-card h2 {
+        color: #0974f1;
+    }
+
+/* Right Section */
+.right-section {
+    flex: 1;
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.user-block {
+    margin-bottom: 15px;
+    border-bottom: 1px solid #e0e0e0;
+    padding-bottom: 10px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .index-container {
+        flex-direction: column;
+    }
+
+    .left-section,
+    .center-section,
+    .right-section {
+        margin-bottom: 20px;
+    }
+}

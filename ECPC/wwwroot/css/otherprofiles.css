@@ -1,0 +1,149 @@
+﻿h2 {
+    text-align: center;
+    color: white; /* White text for header */
+}
+
+.profile-container {
+    position: absolute; /* Allows precise positioning */
+    top: 50%; /* Center vertically */
+    left: 50%; /* Center horizontally */
+    transform: translate(-50%, -50%); /* Adjust position to ensure perfect centering */
+    max-width: 800px;
+    width: 100%; /* Optional: Adjust to fit screen size */
+    padding: 20px;
+    background-color: #121212; /* Dark background color */
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.7); /* Slightly stronger shadow */
+    border: 1px solid #1da1f2; /* Add border with color (e.g., Twitter blue) */
+}
+
+.profile-social {
+    text-align: center;
+    margin-top: 20px;
+}
+
+    .profile-social a {
+        font-size: 28px;
+        margin: 0 15px;
+        color: #ccc; /* Light gray icons */
+        text-decoration: none;
+        transition: color 0.3s ease, transform 0.3s ease; /* Smooth color change and scaling */
+    }
+
+        .profile-social a:hover {
+            color: #1da1f2; /* Twitter blue for hover */
+            transform: scale(1.1); /* Slight scaling effect on hover */
+        }
+
+/* Profile Header */
+.profile-header {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr; /* Three columns: socials, image, actions */
+    align-items: center; /* Center items vertically */
+    gap: 20px; /* Space between columns */
+}
+
+/* Profile Socials */
+.profile-socials {
+    width: 70%; /* Adjust the percentage to control the width */
+    text-align: center; /* Keep the text centered */
+    margin-right: 20px; /* Add some spacing between socials and the profile image */
+}
+
+    .profile-socials p {
+        background-color: #333; /* Dark background for social text */
+        padding: 10px;
+        border-radius: 5px;
+        margin: 5px 0;
+        color: white; /* White text */
+    }
+       
+            /* Bio Section */
+            .bio {
+    width: 80%;
+    height: 60px;
+    background: #2a2a2a; /* Dark gray background for bio */
+    color: white; /* White text */
+    border: 1px solid #444; /* Lighter border */
+    border-radius: 5px;
+    margin-top: 10px;
+    padding: 5px;
+    font-family: 'Arial', sans-serif;
+}
+
+/* Profile Image */
+.profile-image {
+    width: 120px;
+    height: 120px;
+    background-color: #444; /* Slightly darker background for image container */
+    border-radius: 50%; /* Circular shape */
+    margin: 0 auto; /* Center the image horizontally */
+    
+}
+
+/* Profile Stats Row */
+.profile-stats-row {
+    display: flex;
+    justify-content: space-around;
+    border-top: 1px solid red; /* Lighter gray border */
+    padding-top: 20px;
+    margin-top: 20px;
+}
+
+.stat-box {
+    background: #333; /* Dark background for stats boxes */
+    padding: 10px 15px;
+    border-radius: 5px;
+    text-align: center;
+    color: white; /* White text in stats boxes */
+}
+
+
+/* Profile Actions */
+.profile-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    width: 70%;
+}
+
+    .profile-actions button {
+        padding: 10px 10px; /* Increase padding for larger buttons */
+        font-size: 16px; /* Increase font size */
+        width: 150px; /* Set a fixed width for the buttons */
+        background: #444;
+        border: none;
+        color: #FFF;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+        .profile-actions button:hover {
+            background-color: blue; /* Darker background on hover */
+            transform: scale(1.01);
+        }
+
+
+/* Base Button Style */
+.btn {
+    padding: 10px 10px; /* Button padding */
+    font-size: 16px; /* Button font size */
+    width: 150px; /* Fixed width for buttons */
+    background-color: #444; /* Background color */
+    border: none; /* Remove borders */
+    color: #FFF; /* Text color */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor for click action */
+    transition: background-color 0.3s ease; /* Smooth background transition */
+    text-align: center; /* Center text inside button */
+}
+
+    /* Button Hover Effect */
+    .btn:hover {
+        background-color: blue; /* Darker background on hover */
+        transform: scale(1.01);
+    }
+
+

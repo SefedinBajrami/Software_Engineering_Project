@@ -1,0 +1,59 @@
+﻿@model ECPC.Models.UserProfileViewModel
+@using System.Security.Claims
+
+@{
+    ViewData["Title"] = $"{Model.UserName}'s Profile";
+}
+<link rel="stylesheet" href="~/css/otherprofiles.css">
+
+<div class="profile-container">
+    <div class="profile-header">
+        <div class="profile-socials">
+            <p><strong>Connections:</strong> @Model.Connections</p>
+            <p><strong>Following:</strong> @Model.Following</p>
+            <p><strong>Followers:</strong> @Model.Followers</p>
+            <p class="bio">@Model.Bio</p>
+        </div>
+        <div>
+            <img src="@Model.ProfileImageUrl" alt="Profile Image" class="profile-image">
+        </div>
+        <div class="profile-actions">
+            @if (Model.IsFollowing)
+            {
+                <form asp-action="Unfollow" asp-controller="Auth" method="post">
+                    <input type="hidden" name="userId" value="@Model.ProfileUserId" />
+                    <button type="submit" class="btn btn-danger">Unfollow</button>
+                </form>
+            }
+            else
+            {
+                <form asp-action="Follow" asp-controller="Auth" method="post">
+                    <input type="hidden" name="userId" value="@Model.ProfileUserId" />
+                    <button type="submit" class="btn btn-primary">Follow</button>
+                </form>
+            }
+            <button class="btn btn-primary">Invite</button>
+            <button class="btn btn-secondary">Invite to team</button>
+        </div>
+    </div>
+
+    <h2 class="profile-name">@Model.UserName</h2>
+
+    <div class="profile-social">
+        <a href="@Model.Facebook" target="_blank">
+            <i class="fab fa-facebook-f"></i>
+        </a>
+        <a href="@Model.Instagram" target="_blank">
+            <i class="fab fa-instagram"></i>
+        </a>
+        <a href="@Model.Twitter" target="_blank">
+            <i class="fab fa-twitter"></i>
+        </a>
+    </div>
+
+    <div class="profile-stats-row">
+        <div class="stat-box">Events attended: @Model.EventsAttended</div>
+        <div class="stat-box">Attendance: @Model.AttendancePercentage %</div>
+        <div class="stat-box">Events created: @Model.EventsCreated</div>
+    </div>
+</div>

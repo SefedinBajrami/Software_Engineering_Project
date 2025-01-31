@@ -1,0 +1,39 @@
+User table
+
+userprofile -
+1.Followers , 2.Following , 3.Connections , 4.Bio ,5.facebook 6.insta ,
+7.twitter , 8.eventsattended , 9.eventscreated , 10.attendance(% percentage) ,11.Profileimage
+
+Events Database - 15 attributes 
+1.ID 
+2.Tittle 
+3.Description 
+4.Location 
+5.Eventdate 
+6.Time 
+7.Createdby  
+8.Country 
+9.City 
+10.District 
+11.Category
+12.MaxParticipantssize 
+13.public/private 
+14.image/photo
+15.grouping
+null can be only category , description , city , district , image , maxparticipants
+
+
+Comments database - 
+1.id,2.Eventid , 3.Userid , 4.comment ,5.CreatedAt
+
+EventParticipants database - 
+1.Id ,2.eventid , 3.UserID ,4.request , 5.confirm
+
+request database
+1.id , 2.UserId ,3.EventId , 4.confirm
+
+eventphotos -
+1.Id ,2.eventid , 3.photo
+
+
+id , tittle , location , eventdate ,time , createdby, country ,grouping 

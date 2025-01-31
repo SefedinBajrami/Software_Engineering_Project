@@ -1,0 +1,25 @@
+﻿@model ECPC.Models.UserProfileViewModel
+
+<h2>Edit Profile</h2>
+
+<form asp-action="EditProfile" method="post" enctype="multipart/form-data">
+    <label for="UserName">Username</label>
+    <input asp-for="UserName" readonly />
+
+    <label for="Bio">Bio</label>
+    <textarea asp-for="Bio"></textarea>
+
+    <label for="Facebook">Facebook</label>
+    <input asp-for="Facebook" type="text" />
+
+    <label for="Instagram">Instagram</label>
+    <input asp-for="Instagram" type="text" />
+
+    <label for="Twitter">Twitter</label>
+    <input asp-for="Twitter" type="text" />
+
+    <label for="ProfilePicture">Profile Picture</label>
+    <input asp-for="ProfileImageUrl" type="file" name="profilePicture" />
+
+    <button type="submit">Save</button>
+</form>

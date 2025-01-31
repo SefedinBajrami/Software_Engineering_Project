@@ -1,0 +1,150 @@
+﻿@model ECPC.Models.UserProfileViewModel
+@using System.Security.Claims
+
+@{
+    ViewData["Title"] = $"{Model.UserName}'s Profile";
+}
+<link rel="stylesheet" href="~/css/userprofile.css">
+
+    <!-- Display user details -->
+    <div class="profile-container">
+        <div class="profile-header">
+            <div class="profile-socials">
+                <p><strong>Connections:</strong> 173</p>
+                <p><strong>Following:</strong> 200</p>
+                <p><strong>Followers:</strong> 194</p>
+                <p id="bio-display" class="bio">@Model.Bio</p>
+                <textarea id="bio-edit" style="display: none;">@Model.Bio</textarea>
+            </div>
+            <div>
+                <img src="@Model.ProfileImageUrl" alt="Profile Image" class="profile-image">
+                <input id="profile-picture-edit" type="file" style="display: none;" />
+            </div>
+        </div> 
+        <!-- Icons -->
+        <div class="profile-icons">
+            <a href="#" id="edit-btn" class="icon edit-icon" title="Edit Profile">
+                <i class="fas fa-edit" style="font-size:24px"></i>
+            </a>
+            <a href="@Url.Action("Settings", "User")" class="icon settings-icon" title="Settings">
+                <i class="fas fa-cog"></i>
+            </a>
+        </div>
+
+        <h2 class="profile-name">
+            <span id="username-display">@Model.UserName</span>
+            <input id="username-edit" type="text" value="@Model.UserName" class="edit-input" style="display: none;" />
+        </h2>
+    <div class="profile-social">
+        <!-- Facebook -->
+        <a href="@Model.Facebook" target="_blank" id="facebook-link" title="Facebook">
+            <i class="fab fa-facebook-f"></i>
+        </a>
+        <p id="facebook-display" style="display: none;">@Model.Facebook</p>
+        <input id="facebook-edit" type="text" value="@Model.Facebook" class="edit-input" style="display: none;" />
+
+        <!-- Instagram -->
+        <a href="@Model.Instagram" target="_blank" id="instagram-link" title="Instagram">
+            <i class="fab fa-instagram"></i>
+        </a>
+        <p id="instagram-display" style="display: none;">@Model.Instagram</p>
+        <input id="instagram-edit" type="text" value="@Model.Instagram" class="edit-input" style="display: none;" />
+
+        <!-- Twitter -->
+        <a href="@Model.Twitter" target="_blank" id="twitter-link" title="Twitter">
+            <i class="fab fa-twitter"></i>
+        </a>
+        <p id="twitter-display" style="display: none;">@Model.Twitter</p>
+        <input id="twitter-edit" type="text" value="@Model.Twitter" class="edit-input" style="display: none;" />
+    </div>
+
+    
+        <div class="profile-stats-row">
+            <div class="stat-box">Events attended: @Model.EventsAttended</div>
+            <div class="stat-box">Attendance: @Model.AttendancePercentage %</div>
+            <div class="stat-box">Events created: @Model.EventsCreated</div>
+        </div>
+   </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const editButton = document.getElementById("edit-btn");
+            let isEditing = false;
+
+            editButton.addEventListener("click", function (e) {
+                e.preventDefault();
+                toggleEditMode();
+            });
+
+            function toggleEditMode() {
+                isEditing = !isEditing;
+
+                // Scroll to the container's top when entering edit mode
+                if (isEditing) {
+                    document.querySelector(".profile-container").scrollIntoView({ behavior: "smooth" });
+                }
+                // Toggle visibility for Bio
+                document.getElementById("bio-display").style.display = isEditing ? "none" : "block";
+                document.getElementById("bio-edit").style.display = isEditing ? "block" : "none";
+
+                // Toggle visibility for Social Links
+                toggleSocialEdit("facebook");
+                toggleSocialEdit("instagram");
+                toggleSocialEdit("twitter");
+
+                // Toggle visibility for Profile Picture
+                document.getElementById("profile-picture-edit").style.display = isEditing ? "block" : "none";
+
+                // Update button text/icon
+                editButton.innerHTML = isEditing
+                    ? '<i class="fas fa-save" style="font-size:24px"></i> Save'
+                    : '<i class="fas fa-edit" style="font-size:24px"></i>';
+
+                // Toggle visibility for Username
+                document.getElementById("username-display").style.display = isEditing ? "none" : "inline-block";
+                document.getElementById("username-edit").style.display = isEditing ? "inline-block" : "none";
+
+                if (!isEditing) {
+                    saveChanges();
+                }
+            }
+
+            function toggleSocialEdit(social) {
+                document.getElementById(`${social}-display`).style.display = isEditing ? "none" : "block";
+                document.getElementById(`${social}-edit`).style.display = isEditing ? "block" : "none";
+            }
+
+            function saveChanges() {
+                const updatedData = new FormData();
+                updatedData.append("bio", document.getElementById("bio-edit").value);
+                updatedData.append("facebook", document.getElementById("facebook-edit").value);
+                updatedData.append("instagram", document.getElementById("instagram-edit").value);
+                updatedData.append("twitter", document.getElementById("twitter-edit").value);
+                updatedData.append("userName", document.getElementById("username-edit").value);
+
+                const fileInput = document.getElementById("profile-picture-edit");
+                if (fileInput.files[0]) {
+                    updatedData.append("profilePicture", fileInput.files[0]);
+                }
+
+            fetch("/Auth/EditProfile", {
+                method: "POST",
+                body: updatedData,
+            })
+                .then((response) => {
+                    if (!response.ok) {
+                        throw new Error("Failed to save changes.");
+                    }
+                    return response.json();
+                })
+                .then((data) => {
+                    console.log(data.message);
+                    location.reload(); // Refresh the page
+                })
+                .catch((error) => {
+                    console.error("Error:", error);
+                    alert("Failed to save changes.");
+                });
+            }
+        });
+
+</script>

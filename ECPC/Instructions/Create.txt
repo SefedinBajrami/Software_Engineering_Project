@@ -1,0 +1,15 @@
+﻿functionalities:
+1.category. - select
+2.name.- creator enters name of event
+3.description.- add description
+4.photos,homepage(explore) photo, photos on events page
+5.videos
+6.participants size.- select how many participants can join event
+7.location
+8.datetime
+9.invitations
+
+
+how to create gaming team event :
+1.send invitations to friends if all accept , you can create the event 
+

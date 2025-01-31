@@ -1,0 +1,323 @@
+﻿/* General container for the page */
+.index-container {
+    width: 90%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: black;
+    margin-top: 90px;
+    border-radius: 30px;
+
+}
+
+/* Event card styling */
+.event-card {
+    display: grid;
+    grid-template-columns: 1fr 3fr 2fr; /* Left: 1, Middle: 3, Right: 2 */
+    gap: 20px;
+    margin-bottom: 20px;
+    padding: 15px;
+    border: 1px solid blue;
+    border-radius: 10px;
+    background-color: #1E1E1E; /* Dark gray background */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Left section styling */
+.left-section {
+    padding: 10px;
+  /*  border-right: 1px solid #ccc;*/
+    background-color: black;
+    border-radius: 5px;
+}
+
+    .left-section h3 {
+        margin-top: 0;
+        font-size: 1.2rem;
+        font-weight: bold;
+        color: white;
+    }
+
+    .left-section p {
+        font-size: 0.9rem;
+        color: #666;
+    }
+
+/* Middle section styling */
+.middle-section {
+    padding: 10px;
+    text-align: center;
+    position: relative
+}
+
+    .middle-section h2 {
+        margin: 0 0 10px 0;
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: #0056b3;
+    }
+
+    .middle-section img {
+        width: 100%;
+        height: auto;
+        margin-bottom: 10px;
+        border-radius: 10px;
+        border: 2px solid black;
+    }
+
+/* General Button Styling */
+.btn-go {
+    display: inline-block;
+    padding: 12px 24px;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #ffffff; /* White text */
+    background-color: #007bff; /* Blue background */
+    border: none;
+    border-radius: 8px; /* Rounded corners */
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease; /* Smooth transition for hover effects */
+}
+
+    /* Hover Effect */
+    .btn-go:hover {
+        background-color: #0056b3; /* Darker blue on hover */
+        transform: translateY(-2px); /* Slight lift effect */
+    }
+
+    /* Focus and Active States */
+    .btn-go:focus, .btn-go:active {
+        outline: none; /* Remove default outline */
+        background-color: #004085; /* Even darker blue on focus/active */
+        transform: translateY(0); /* Reset lift effect */
+    }
+
+    /* Optional: Add a shadow for a more 3D effect */
+    .btn-go:focus, .btn-go:hover {
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Slight shadow on hover/focus */
+    }
+
+/* Right section styling */
+.right-section {
+    padding: 10px;
+    background-color: black;
+    border-radius: 5px;
+}
+
+    .right-section .user-profile {
+        display: flex;
+        align-items: center;
+        margin-bottom: 15px;
+    }
+
+        .right-section .user-profile img.profile-image {
+            width: 40px; /* Adjust size */
+            height: 40px; /* Adjust size */
+            border-radius: 50%; /* Circular image */
+            margin-right: 10px;
+            border: 1px solid blue; /* Optional border */
+        }
+
+        .right-section .user-profile h3 {
+            margin: 0;
+            font-size: 1rem;
+            color: #007bff;
+        }
+
+            .right-section .user-profile h3 a {
+                text-decoration: none;
+                color: inherit;
+            }
+
+                .right-section .user-profile h3 a:hover {
+                    text-decoration: underline;
+                }
+
+    .right-section .event-details {
+        margin-top: 10px;
+        font-size: 0.95rem;
+    }
+
+        .right-section .event-details p {
+            margin: 5px 0;
+        }
+
+        .right-section .event-details strong {
+            color: #333;
+        }
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .event-card {
+        grid-template-columns: 1fr; /* Stack all sections vertically */
+    }
+
+    .left-section,
+    .middle-section,
+    .right-section {
+        border: none;
+        padding: 10px 0;
+    }
+
+        .middle-section img {
+            margin: 0 auto;
+        }
+}
+
+.right-section .event-details {
+    margin-top: 10px;
+    font-size: 0.95rem;
+    line-height: 1.6; /* Add space between lines for better readability */
+    color: white;
+   
+}
+
+    .right-section .event-details p {
+        margin: 10px 0; /* Add vertical spacing between each detail */
+      
+        margin-top: 30px;
+    }
+
+    .right-section .event-details strong {
+        font-weight: bold;
+        color:red; /* Slightly softer bold for detail labels */
+    }
+/* Location link styling */
+.location-link {
+    color:#bdbdbd ; /* Blue color for the text */
+    font-size: 1rem;
+    text-decoration: none; /* Remove underline */
+    font-weight: bold;
+}
+
+    .location-link i {
+        color: #218838; /* Red color for the icon */
+        margin-right: 5px; /* Space between the icon and the text */
+    }
+
+    .location-link:hover {
+        color:white;
+        text-decoration: underline; /* Underline on hover for better UX */
+    }
+    /* - - -  - - - - - - - - -  - - - - - - - */
+
+/* From Uiverse.io by SalladShooter */
+.button {
+    cursor: pointer;
+    padding: 2px;
+    font-size: 10px;
+    width: 30px;
+    aspect-ratio: 1/0.25;
+    color: white;
+    background: #212121;
+    background-size: cover;
+    background-blend-mode: overlay;
+    border-radius: 0.5em;
+    outline: 0.1em solid #353535;
+    border: 0;
+    box-shadow: 0 0 1em 1em rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease-in-out;
+    position: absolute; /* Position the button relative to the middle-section */
+    top: 66px; /* Center vertically */
+    right: 10px; /* Align to the right with 10px margin */
+    transform: translateY(-50%); /* Perfectly align vertically */
+}
+
+    .button:hover {
+        transform: translateY(-50%) scale(1.1); /* Maintain vertical centering while scaling */
+        box-shadow: 0 0 1em 0.45em rgba(0, 0, 0, 0.1);
+        background: linear-gradient(45deg, #212121, #252525);
+        background: radial-gradient(circle at bottom, rgba(50, 100, 180, 0.5) 10%, #212121 70%);
+        outline: 0;
+    }
+
+.icon {
+    fill: white;
+    width: 1em;
+    aspect-ratio: 1;
+    top: 0;
+    left: 0;
+    margin: auto;
+    transform: translate(-35%, 10%);
+}
+
+
+
+    /* = = = = ==  ==  = = = = = = = = = = = = == = = */
+
+/* From Uiverse.io by ahmed150up */
+.btn-save {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    background-color: #f2f2f2;
+    color: #333;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+    .btn-save:hover {
+        background-color: #ddd;
+    }
+
+.icon {
+    width: 24px;
+    height: 24px;
+    margin-right: 8px;
+}
+
+.icon-path {
+    fill: #333;
+    transition: fill 0.3s ease;
+}
+
+.btn-save:hover .icon-path {
+    fill: #888;
+}
+/***     ------------           --------------          ----------------- */
+
+#comments-section {
+    margin: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+    #comments-section h3 {
+        margin-bottom: 10px;
+    }
+
+#comments-list .comment {
+    margin-bottom: 15px;
+    padding: 5px 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+#add-comment-text {
+    width: 100%;
+    height: 50px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+#add-comment-button {
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+    #add-comment-button:hover {
+        background-color: #0056b3;
+    }
+/* *  * * ** * * ***********   * * * * * * * * * * * * * * * * * ** * * **/

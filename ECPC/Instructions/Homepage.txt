@@ -1,0 +1,20 @@
+﻿Navigation bar: Explore, Create, Play, Connect, menubar, profile.
+nmajt::::choose: country / city / Disctrict
+nmes:::::Around Me / following / connections 
+ndjatht:::choose km range 
+
+settings menu - 
+
+
+
+*Display a list of attendees for each event.
+
+*Add social sharing
+
+*Event Categories - if category is selected on home page will 
+                    be shown only events with that category,
+                    if not by default all events will be shown.
+
+*Comments/Reviews - Add a comment or review section for users to 
+                    share feedback about events.
+

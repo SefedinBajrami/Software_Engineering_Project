@@ -1,0 +1,31 @@
+﻿@model IEnumerable<ECPC.Models.UserProfileViewModel>
+
+@{
+    ViewData["Title"] = "Connect";
+}
+
+<link rel="stylesheet" href="~/css/connect.css">
+
+<!-- Grid for users -->
+<div class="user-grid">
+    @foreach (var user in Model)
+    {
+        <div class="user-card">
+            <!-- Profile Image -->
+            <img src="@user.ProfileImageUrl" alt="Profile Image" class="profile-image" />
+
+            <!-- User Name with clickable link -->
+            <h3>
+                <a asp-controller="Auth" asp-action="OtherProfiles" asp-route-id="@user.ProfileUserId">
+                    @user.UserName
+                </a>
+            </h3>
+
+            <!-- Follow Button -->
+            <form asp-action="Follow" asp-controller="Follow" method="post">
+                <input type="hidden" name="userId" value="@user.ProfileUserId" />
+                <button type="submit" class="btn">Follow</button>
+            </form>
+        </div>
+    }
+</div>

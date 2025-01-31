@@ -1,0 +1,324 @@
+﻿@model ECPC.Models.Event
+using ECPC.ViewModels;
+@{
+    ViewData["Title"] = "Create Event";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Event</title>
+    <link rel="stylesheet" href="/css/create.css">
+</head>
+<body>
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success">
+            @TempData["SuccessMessage"]
+        </div>
+    }
+
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-danger">
+            @TempData["ErrorMessage"]
+        </div>
+    }
+
+    @if (!ViewData.ModelState.IsValid)
+    {
+        <div class="alert alert-danger">
+            Please correct the errors in the form and try again.
+        </div>
+    }
+
+    <form asp-action="Create" method="post" enctype="multipart/form-data" class="form-container">
+        <div class="row">
+            <div class="col">
+                <label for="title">Title:</label>
+                <input type="text" id="title" name="title" placeholder="Event Title" required>
+            </div>
+
+            <div class="col center-column">
+                Show in:
+            </div>
+        </div>
+
+       
+        <div class="row">
+            <div class="col">
+                <label for="eventDate">Event Date:</label>
+                <input type="date" id="eventDate" name="eventDate" required>
+            </div>
+            <div class="col">
+                <label for="country">Country:</label>
+                <input type="text" id="country" name="country" placeholder="Country" required>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <label for="time">Time:</label>
+                <input type="time" id="time" name="time" required>
+            </div>
+            <div class="col">
+                <label for="city">City:</label>
+                <input type="text" id="city" name="city" placeholder="City" required>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <label for="maxParticipants">Max Participants:</label>
+                <input type="number" id="maxParticipants" name="maxParticipants" placeholder="Number of Participants">
+            </div>
+            <div class="col">
+                <label for="district">District:</label>
+                <input type="text" id="district" name="district" placeholder="District">
+            </div>
+           
+            
+        </div>
+        <div class="row">
+            <div class="col">
+                <label for="location">Location:</label>
+                <input type="text" id="location" name="location" placeholder="Location" required>
+            </div>
+            <div class="col">
+                <label for="range">Range (KM):</label>
+                <div class="range-container">
+                    <input type="range" id="range" name="range" min="1" max="100" value="50">
+                    <span id="range-value">50 KM</span>
+                </div>
+                </div>
+        </div>
+        <div class="row center">
+            <label for="grouping">Grouping:</label>
+            <select id="grouping" name="grouping" required>
+                <option value="social">Social</option>
+                <option value="sports">Sports</option>
+                <option value="artsCulture">Arts & Culture</option>
+                <option value="educationWorkshops">Education & Workshops</option>
+                <option value="travelAdventure">Travel & Adventure</option>
+                <option value="businessNetworking">Business & Networking</option>
+            </select>
+        </div>
+
+        <div class="row center">
+            <label for="category">Category:</label>
+            <select id="category" name="category" >
+                <!-- Categories dynamically populated based on Grouping -->
+            </select>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <label for="image">Upload Image:</label>
+                <input type="file" id="image" name="image" accept="image/*">
+            </div>
+            <div class="col">
+                <label for="description">Description:</label>
+                <textarea id="description" name="description" placeholder="Event Description" rows="3"></textarea>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <label>Visibility:</label>
+                <div class="privacy-container">
+                    <div class="privacy-item">
+                        <label class="switch">
+                            <input type="checkbox" id="publicSwitch" name="privacy" value="Public">
+                            <span class="slider"></span>
+                        </label>
+                        <label for="publicSwitch" class="privacy-label" id="publicLabel">Public</label>
+                    </div>
+
+                    <div class="privacy-item">
+                        <label class="switch">
+                            <input type="checkbox" id="privateSwitch" name="privacy" value="Private">
+                            <span class="slider"></span>
+                        </label>
+                        <label for="privateSwitch" class="privacy-label" id="privateLabel">Private</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+     
+
+    <div class="centerbuton">
+        <button type="submit" class="btn">
+            <strong>CREATE</strong>
+            <div id="container-stars">
+                <div id="stars"></div>
+            </div>
+            <div id="glow">
+                <div class="circle"></div>
+                <div class="circle"></div>
+            </div>
+        </button>
+    </div>
+    </form>
+    <script>
+        const groupingSelect = document.getElementById('grouping');
+        const categorySelect = document.getElementById('category');
+
+        const categories = {
+            social: [
+                "Family & Kids",
+                "Friends",
+                "Community & Causes",
+                "Other"
+            ],
+            sports: [
+                "Team Sports",
+                "Racquet Sports",
+                "Water Sports",
+                "Mind Sports",
+                "Adventure Sports",
+                "Combat Sports",
+                "Fitness Activities",
+                "Winter Sports",
+                "Motor Sports",
+                "Track & Field",
+                "Extreme Sports",
+                "Other"
+            ],
+            artsCulture: [
+                "Performing Arts",
+                "Visual Arts",
+                "Literature & Writing",
+                "Film & Media",
+                "Music Events",
+                "Crafts & DIY",
+                "Cultural Festivals",
+                "Fashion & Design",
+                "Museums & Galleries",
+                "History & Heritage",
+                "Other"
+            ],
+            educationWorkshops: [
+                "Skill Development",
+                "Professional Development",
+                "Creative Workshops",
+                "STEM & Technology",
+                "Health & Wellness",
+                "Business & Entrepreneurship",
+                "Parenting & Family",
+                "DIY & Crafts",
+                "Cooking & Culinary Arts",
+                "Life Skills",
+                "Other"
+            ],
+            travelAdventure: [
+                "Local Trips",
+                "Domestic Travel",
+                "International Travel",
+                "Outdoor Exploration",
+                "Water Adventures",
+                "Extreme Activities",
+                "Other"
+            ],
+            businessNetworking: [
+                "Workshops & Seminars",
+                "Conferences & Summits",
+                "Meetups & Networking Events",
+                "Startups & Entrepreneurship",
+                "Career Development",
+                "Other"
+            ]
+        };
+        // Update categories when grouping changes
+        groupingSelect.addEventListener('change', () => {
+            const selectedGrouping = groupingSelect.value;
+
+            // Clear current options
+            categorySelect.innerHTML = '';
+
+            // Populate category options dynamically
+            if (categories[selectedGrouping]) {
+                categories[selectedGrouping].forEach(category => {
+                    const option = document.createElement('option');
+                    option.value = category.toLowerCase().replace(/ /g, '-');
+                    option.textContent = category;
+                    categorySelect.appendChild(option);
+                });
+            }
+        });
+
+        // Toggle logic for public/private switches
+        const publicSwitch = document.getElementById('publicSwitch');
+        const privateSwitch = document.getElementById('privateSwitch');
+        const publicLabel = document.getElementById('publicLabel');
+        const privateLabel = document.getElementById('privateLabel');
+
+        publicSwitch.addEventListener('change', () => {
+            if (publicSwitch.checked) {
+                privateSwitch.checked = false;
+                publicLabel.style.color = '#0974f1';
+                privateLabel.style.color = '#000';
+            }
+        });
+
+        privateSwitch.addEventListener('change', () => {
+            if (privateSwitch.checked) {
+                publicSwitch.checked = false;
+                privateLabel.style.color = '#0974f1';
+                publicLabel.style.color = '#000';
+            }
+        });
+
+        // Update range value display dynamically
+        const rangeInput = document.getElementById('range');
+        const rangeValue = document.getElementById('range-value');
+
+        rangeInput.addEventListener('input', () => {
+            rangeValue.textContent = `${rangeInput.value} KM`;
+        });
+
+        // Handle form submission
+        document.querySelector('form').addEventListener('submit', (e) => {
+            console.log('Form Data:');
+            const formData = new FormData(e.target);
+            let isValid = true;
+
+            // Check for empty required fields
+            const requiredFields = ['title', 'eventDate', 'time', 'location', 'country', 'grouping'];
+            requiredFields.forEach((field) => {
+                if (!formData.get(field)) {
+                    alert(`Please fill out the ${field} field.`);
+                    isValid = false;
+                    e.preventDefault();
+                }
+            });
+
+            // Validate privacy selection
+            const privacy = formData.get('privacy');
+            if (!privacy) {
+                alert('Please select either Public or Private visibility!');
+                isValid = false;
+                e.preventDefault();
+            }
+
+            if (isValid) {
+                formData.forEach((value, key) => {
+                    console.log(`${key}: ${value}`);
+                });
+            }
+        });
+
+        // Default settings for public/private switches
+        window.addEventListener('DOMContentLoaded', () => {
+            publicSwitch.checked = true; // Default to Public
+            privateSwitch.checked = false;
+        });
+
+
+    </script>
+
+
+</body>
+</html>
+

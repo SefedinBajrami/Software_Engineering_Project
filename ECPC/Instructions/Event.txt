@@ -1,0 +1,13 @@
+﻿Event 
+Functionalities :
+1.Redirect to events page. -  clicked on Tittle .
+2.comments - can have comments from users
+3.Join.- send request to join.
+4.Join with team.- send request to friends to accept, 
+				   if all friends accept sends request
+				   to events creator to join.
+5.Public or private - private for friends only 
+6.Location
+7.datetime
+8.Category
+9.request button 

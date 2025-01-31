@@ -1,0 +1,80 @@
+﻿Explore
+
+
+
+
+Explore Spaces
+Scroll bar options(Explore Spaces):
+
+
+
+1. Social
+categories :
+   - Family & Kids (e.g., playdates, family outings ,Family Gatherings)
+   - Friends (e.g. meetups, Movie Nights, Game Nights, parties)
+   - Community & Causes (e.g., volunteering, charity events,
+     Wellness & Health  awareness,Charity & Fundraisers)
+   - Other
+
+
+
+2. Sports
+categories :
+		-	Team Sports (e.g., Soccer, Basketball, Volleyball)
+		-	Racquet Sports (e.g., Tennis, Badminton, Table Tennis)
+		-	Water Sports (e.g., Swimming, Surfing, Rowing)
+		-   Mind Sports (Examples: Chess, Esports, Bridge, Poker.)
+		-	Adventure Sports (e.g., Rock Climbing, Skydiving, Hiking)
+		-	Combat Sports (e.g., Boxing, Martial Arts, Wrestling)
+		-	Fitness Activities (e.g., Yoga, Pilates, Gym Workouts)
+		-	Winter Sports (e.g., Skiing, Snowboarding, Ice Hockey)
+		-	Motor Sports (e.g., Formula Racing, Motorbike Racing)
+		-	Track & Field (e.g., Running, High Jump, Javelin)
+		-	Extreme Sports (e.g., Skateboarding, Parkour, BMX)
+		-   Other
+
+3. Arts & Culture 
+categories :
+		-	Performing Arts
+		-	Visual Arts
+		-	Literature & Writing
+		-	Film & Media
+		-	Music Events (concerts, jam sessions)
+		-	Crafts & DIY
+		-	Cultural Festivals
+		-	Fashion & Design
+		-	Museums & Galleries
+		-	History & Heritage       
+		-	other 
+
+4. Education & Workshops
+categories :
+		-	Skill Development (e.g., coding, language learning, public speaking)
+		-	Professional Development (e.g., leadership training, resume building, job skills)
+		-	Creative Workshops (e.g., writing, photography, graphic design)
+		-	STEM & Technology (e.g., robotics, AI, programming workshops)
+		-	Health & Wellness (e.g., mental health seminars, fitness workshops)
+		-	Business & Entrepreneurship (e.g., starting a business, marketing, finance)
+		-	Parenting & Family (e.g., childcare, family dynamics, homeschooling tips)
+		-	DIY & Crafts (e.g., pottery, woodworking, home improvement tips)
+		-	Cooking & Culinary Arts 
+		-	Life Skills 
+		-	other 
+			   
+5. Travel & Adventure 
+categories :
+		-	Local Trips (e.g., city tours, nearby attractions)
+		-	Domestic Travel (e.g., exploring your country)
+		-	International Travel (e.g., global destinations
+		-	Outdoor Exploration (e.g., hiking, camping)
+		-	Water Adventures (e.g., kayaking, snorkeling)
+		-	Extreme Activities (e.g., skydiving, bungee jumping)
+		-	other 
+6. Business & Networking (e.g., meetups, conferences)
+categories :
+		-	Workshops & Seminars (e.g., leadership, marketing strategies)
+		-	Conferences & Summits (e.g., industry-specific gatherings)
+		-	Meetups & Networking Events (e.g., casual business meetups, professional mixers)
+		-	Startups & Entrepreneurship (e.g., pitching events, startup showcases)
+		-	Career Development (e.g., job fairs, resume-building sessions)
+		-	other 

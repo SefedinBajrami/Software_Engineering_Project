@@ -1,0 +1,9 @@
+﻿first lets make the connect page , when Connect text at navigation is clicked
+it should redirect to connect page . on connect page there should be displayed 
+random other users that i dont follow , on connect page there should be many rows 
+for users and 4 wide columns  ,  each  celll should display profile image , name ,
+surname ,Follow button .  profile image when clicked will open 
+a window with the image zoomed , if name and surname is clicked it will redirect to 
+that users page(which we will design the html css how it will look ) ,
+and when follow button is 
+clicked it will send a follow request 

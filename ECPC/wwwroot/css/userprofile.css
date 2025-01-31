@@ -1,0 +1,142 @@
+﻿h2 {
+    text-align: center;
+    color: white; /* White text for header */
+}
+
+.profile-container {
+    position: absolute; /* Allows precise positioning */
+    top: 50%; /* Center vertically */
+    left: 50%; /* Center horizontally */
+    transform: translate(-50%, -50%); /* Adjust position to ensure perfect centering */
+    max-width: 800px;
+    width: 100%; /* Optional: Adjust to fit screen size */
+    padding: 20px;
+    background-color: #121212; /* Dark background color */
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.7); /* Slightly stronger shadow */
+    border: 1px solid #1da1f2; /* Add border with color (e.g., Twitter blue) */
+    overflow-y: auto; /* Add scroll for vertical overflow */
+    max-height: 60vh; /* Limit height to prevent it from going off-screen */
+}
+    .profile-social {
+    text-align: center;
+    margin-top: 20px;
+}
+
+    .profile-social a {
+        font-size: 28px;
+        margin: 0 15px;
+        color: #ccc; /* Light gray icons */
+        text-decoration: none;
+        transition: color 0.3s ease, transform 0.3s ease; /* Smooth color change and scaling */
+    }
+
+        .profile-social a:hover {
+            color: #1da1f2; /* Twitter blue for hover */
+            transform: scale(1.1); /* Slight scaling effect on hover */
+        }
+
+/* Profile Header */
+.profile-header {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr; /* Three columns: socials, image, actions */
+    align-items: center; /* Center items vertically */
+    gap: 20px; /* Space between columns */
+}
+
+/* Profile Socials */
+.profile-socials {
+    width: 70%; /* Adjust the percentage to control the width */
+    text-align: center; /* Keep the text centered */
+    margin-right: 20px; /* Add some spacing between socials and the profile image */
+}
+
+    .profile-socials p {
+        background-color: #333; /* Dark background for social text */
+        padding: 10px;
+        border-radius: 5px;
+        margin: 5px 0;
+        color: white; /* White text */
+    }
+        /* Hover effect on social text */
+        .profile-socials p:hover {
+            background-color: red; /* Change background to Twitter blue on hover */
+            transform: scale(1.01); /* Slightly enlarge the element on hover */
+        }
+        .profile-socials p.bio:hover {
+            background-color: initial !important; /* Reset background */
+            transform: none !important; /* Disable scaling */
+        }
+/* Bio Section */
+.bio {
+    width: 30%;
+    height: 60px;
+    background: #2a2a2a; /* Dark gray background for bio */
+    color: white; /* White text */
+    border: 1px solid #444; /* Lighter border */
+    border-radius: 5px;
+   /*margin-top: 10px;*/
+    padding: 5px;
+    font-family: 'Arial', sans-serif;
+    position: absolute;
+    bottom: 100px;
+    left: 30px;
+}
+
+/* Profile Image */
+.profile-image {
+    width: 120px;
+    height: 120px;
+    background-color: #444; /* Slightly darker background for image container */
+    border-radius: 50%; /* Circular shape */
+    margin: 0 auto; /* Center the image horizontally */
+}
+
+/* Profile Stats Row */
+.profile-stats-row {
+    display: flex;
+    justify-content: space-around;
+    border-top: 1px solid red; /* Lighter gray border */
+    padding-top: 20px;
+    margin-top: 20px;
+}
+
+.stat-box {
+    background: #333; /* Dark background for stats boxes */
+    padding: 10px 15px;
+    border-radius: 5px;
+    text-align: center;
+    color: white; /* White text in stats boxes */
+}
+
+
+.profile-icons {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: flex;
+    gap: 20px;
+    font-size: 24px
+}
+/* - -- - -- - - - -- - - - - */
+
+/* Align inputs with <p> elements */
+.edit-input {
+    display: none; /* Hidden by default */
+    width: 100%; /* Match the width of the <p> element */
+    padding: 5px; /* Add padding for a consistent look */
+    font-size: 16px; /* Match text size */
+    border: 1px solid #ccc; /* Add a border to inputs */
+    border-radius: 4px; /* Rounded corners for consistency */
+    box-sizing: border-box; /* Ensure proper width calculation */
+    margin: 5px 0; /* Add spacing to avoid overlap */
+}
+
+    /* Show inputs when editing */
+    .edit-input.show {
+        display: block; /* Make input visible */
+    }
+
+.hidden {
+    display: none;
+}
