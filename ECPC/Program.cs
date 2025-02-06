@@ -97,7 +97,7 @@ async Task CreateRoles(IServiceProvider serviceProvider)
             EmailConfirmed = true
         };
 
-        string adminPassword = "Ajde!1.3% F";
+        string adminPassword = "Ajde!1.3% F";  //  This is a Password 
         var result = await userManager.CreateAsync(admin, adminPassword);
 
         if (result.Succeeded)
