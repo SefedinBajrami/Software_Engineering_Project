@@ -1,6 +1,7 @@
 using ECPC.Data;
 using ECPC.Models;
 using ECPC.Services;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
@@ -51,6 +52,7 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
+
 app.MapRazorPages(); // Enable Razor Pages for Identity
 
 // Seed Roles, Admin, and UserProfiles
@@ -66,9 +68,15 @@ using (var scope = app.Services.CreateScope())
     seeder.SeedUserProfiles();
 }
 
+app.MapPost("/Auth/Logout", async context =>
+{
+    await context.SignOutAsync(IdentityConstants.ApplicationScheme);
+    context.Response.Redirect("/Auth/Login");
+});
+
 app.Run();
 
-// Create roles on startup
+
 // Create roles on startup
 async Task CreateRoles(IServiceProvider serviceProvider)
 {
@@ -97,7 +105,7 @@ async Task CreateRoles(IServiceProvider serviceProvider)
             EmailConfirmed = true
         };
 
-        string adminPassword = "Ajde!1.3% F";  //  This is a Password 
+        string adminPassword = "Ajde!1.3% F";
         var result = await userManager.CreateAsync(admin, adminPassword);
 
         if (result.Succeeded)
