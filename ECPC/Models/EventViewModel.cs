@@ -1,4 +1,4 @@
-﻿using ECPC.Models;
+using ECPC.Models;
 using System;
 using System.Collections.Generic;
 
@@ -20,7 +20,9 @@ namespace ECPC.ViewModels
         public int? MaxParticipants { get; set; }
         public bool IsPublic { get; set; }
 
-        public string? Image { get; set; } = "/images/default-event.png";
+        public string? Image { get; set; } = "/images/default-event.png"; // Path stored in DB
+        public IFormFile? ImageFile { get; set; } // File input for upload
+
         public string Grouping { get; set; } = string.Empty;
 
         public string CreatedById { get; set; } = string.Empty;
