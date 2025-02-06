@@ -1,4 +1,4 @@
-﻿using ECPC.Data;
+using ECPC.Data;
 using ECPC.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -85,7 +85,6 @@ namespace ECPC.Controllers
             TempData["SuccessMessage"] = null; // Clear any previous success messages
             return View();
         }
-
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(EventViewModel eventViewModel)
@@ -110,6 +109,24 @@ namespace ECPC.Controllers
                 return View(eventViewModel);
             }
 
+            // Handle Image Upload
+            string imagePath = "/images/default-event.png"; // Default image path
+
+            if (eventViewModel.ImageFile != null && eventViewModel.ImageFile.Length > 0)
+            {
+                string uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images");
+                Directory.CreateDirectory(uploadsFolder); // Ensure the folder exists
+                string uniqueFileName = $"{Guid.NewGuid()}_{eventViewModel.ImageFile.FileName}";
+                string filePath = Path.Combine(uploadsFolder, uniqueFileName);
+
+                using (var fileStream = new FileStream(filePath, FileMode.Create))
+                {
+                    await eventViewModel.ImageFile.CopyToAsync(fileStream);
+                }
+
+                imagePath = $"/images/{uniqueFileName}"; // Save the image path
+            }
+
             var eventItem = new Event
             {
                 Title = eventViewModel.Title,
@@ -124,7 +141,7 @@ namespace ECPC.Controllers
                 Category = eventViewModel.Category,
                 MaxParticipants = eventViewModel.MaxParticipants,
                 IsPublic = eventViewModel.IsPublic,
-                Image = eventViewModel.Image ?? "/images/default-event.png",
+                Image = imagePath, // Use the correct image path
                 Grouping = eventViewModel.Grouping
             };
 
