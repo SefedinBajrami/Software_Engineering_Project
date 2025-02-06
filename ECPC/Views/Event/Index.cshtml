@@ -1,4 +1,4 @@
-﻿
+
 @{
     ViewData["Title"] = "All Events";
 }
@@ -26,27 +26,28 @@
                     <div id="comments-section-@eventItem.ID" class="comments-section">
                         <h3>Comments</h3>
                         <div id="comments-list-@eventItem.ID" class="comments-list">
-                            @if (eventItem.Comments != null && eventItem.Comments.Any())
-        {
-            foreach (var comment in eventItem.Comments)
-            {
+                            @if (eventItem.Comments != null && eventItem.Comments.Any()) {
+                                    foreach (var comment in eventItem.Comments)
+                                    {
                                         <div class="comment">
-                                            <img src="@comment.ProfileImageUrl" alt="User Image" style="width: 30px; height: 30px; border-radius: 50%;" />
-                                            <strong>@comment.UserName:</strong>
-                                            <p>@comment.CommentText</p>
-                                            <small>@comment.CreatedAt.ToString("g")</small>
+                                            <div class="comment-header">
+                                                <img src="@comment.ProfileImageUrl" alt="User Image" class="comment-profile-img" />
+                                                <strong class="comment-username">@comment.UserName:</strong>
+                                                <p class="comment-text">@comment.CommentText</p>
+                                            </div>
+                                            <small class="comment-time">@comment.CreatedAt.ToString("g")</small>
                                         </div>
 
-            }
-        }
-        else
-        {
+                                    }
+                            }
+                            else
+                            {
                             <p>No comments yet. Be the first to comment!</p>
-        }
+                             }
                         </div>
                         <textarea id="add-comment-text-@eventItem.ID" class="add-comment-text" data-event-id="@eventItem.ID" placeholder="Add a comment..."></textarea>
                     </div>
-
+                    
                 </div>
 
                 <!-- Middle Section: Event Details -->
