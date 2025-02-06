@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System;
 using Microsoft.AspNetCore.Identity;
@@ -6,6 +6,7 @@ using ECPC.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
 using ECPC.Data;
+using Microsoft.AspNetCore.Authentication;
 
 namespace ECPC.Controllers
 {
@@ -70,6 +71,12 @@ namespace ECPC.Controllers
             return View();
         }
 
+        [HttpPost]
+        public async Task<IActionResult> Logout()
+        {
+            await HttpContext.SignOutAsync(IdentityConstants.ApplicationScheme); // Logs out the user
+            return RedirectToAction("Login", "Auth"); // Redirect to login page
+        }
 
         // Create User Page
         [HttpGet]
