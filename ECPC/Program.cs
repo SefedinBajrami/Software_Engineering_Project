@@ -40,8 +40,8 @@ else
     app.UseDeveloperExceptionPage(); // Enable detailed error messages in development mode
 }
 
-app.UseHttpsRedirection();
-app.UseStaticFiles();
+app.UseHttpsRedirection(); //Redirects HTTP to HTTPS for security
+app.UseStaticFiles();  // Serves  static files (css,js,images) from "wwwroot".
 
 app.UseRouting();
 
